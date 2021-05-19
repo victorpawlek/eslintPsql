@@ -27,4 +27,17 @@ async function getCocktailPreis(preis) {
   };
 }
 
-module.exports = { getCocktails, getZutatenFromCocktail,getCocktailPreis };
+async function deleteCocktail(name) {
+  const { rows } = await db.query('SELECT cname,preis FROM cocktail where cname=$1', [name]);
+  if(rows.length>0){await db.query('delete from cocktail where cname=$1', [name]);
+  return {
+    code: 200,
+    data: 'Deleted',
+    };
+  }
+  else {
+    throw new Error(`Cocktail ${name} not found`)
+  }
+}
+
+module.exports = { getCocktails, getZutatenFromCocktail, getCocktailPreis, deleteCocktail };

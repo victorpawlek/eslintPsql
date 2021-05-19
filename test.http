@@ -5,4 +5,7 @@ GET http://127.0.0.1:3000/cocktails
 GET http://127.0.0.1:3000/cocktails/Alice/zutaten
 
 ###
-GET http://127.0.0.1:3000/cocktails/6.21
+GET http://127.0.0.1:3000/cocktails/7.2
+
+###
+DELETE http://127.0.0.1:3000/cocktails/TNT
