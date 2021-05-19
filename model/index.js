@@ -8,4 +8,15 @@ async function getCocktails() {
   };
 }
 
-module.exports = { getCocktails };
+async function getZutatenFromCocktail(name) {
+  const { rows } = await db.query(
+    'select zbez from besteht join zutat using(zid) where cid=(select cid from cocktail where cname=$1)',
+    [name],
+  );
+  return {
+    code: 200,
+    data: rows,
+  };
+}
+
+module.exports = { getCocktails, getZutatenFromCocktail };
